@@ -14,11 +14,10 @@ const port = process.env.PORT || 3000;
 
 // ACRCloud credentials
 const host = 'identify-ap-southeast-1.acrcloud.com';
-const accessKey = 'cc90c23ad1f13585fb5c27630b07e695';
-const accessSecret = '99kJetd2R5sL764IMUjq6UCkCDaHH4fW3X3S1RbI';
+const accessKey = process.env.ACR_ACCESS_KEY;
+const accessSecret = process.env.ACR_ACCESS_SECRET;
+const serpApiKey = process.env.SERPAPI_KEY;
 
-// SerpAPI key
-const serpApiKey = '5868276f091c30f7fad6055ceb78fbd42807a277254265397ca8e72fb18170c2';
 
 const uploadsDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) {
@@ -76,6 +75,7 @@ const findKarnatikRaga = async (songName) => {
       return 'No relevant Carnatik raagam found';
     }
   } catch (err) {
+    console.error('❌ SerpAPI Error:', err.message || err);
     return 'Error fetching from SerpAPI';
   }
 };
