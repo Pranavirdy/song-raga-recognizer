@@ -75,7 +75,6 @@ const findKarnatikRaga = async (songName) => {
       return 'No relevant Carnatik raagam found';
     }
   } catch (err) {
-    console.error('❌ SerpAPI Error:', err.message || err);
     return 'Error fetching from SerpAPI';
   }
 };
